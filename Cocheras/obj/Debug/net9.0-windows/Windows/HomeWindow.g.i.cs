@@ -2024,7 +2024,7 @@ namespace Cocheras.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Cocheras;component/windows/homewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Cocheras;V1.0.0.0;component/windows/homewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\HomeWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
