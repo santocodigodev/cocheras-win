@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cocheras")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6505c600383bbf0ccd10a9c1ce2bd1a6c9dd9965")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd9433db3e03b565b4d31829df22e9d186abeaa6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cocheras")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cocheras")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

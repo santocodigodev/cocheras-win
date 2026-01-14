@@ -122,11 +122,9 @@ namespace Cocheras
                         infoEstacionamientoWindow.Close();
                         infoEstacionamientoWindow = null;
                         
-                        if (resultadoEstacionamiento == true)
-                        {
-                            // Después de completar info, mostrar login
-                            MostrarLogin();
-                        }
+                        // Después de crear admin, siempre mostrar login (incluso si se canceló el estacionamiento)
+                        // El estacionamiento se puede configurar después desde la app
+                        MostrarLogin();
                     }
                     else
                     {

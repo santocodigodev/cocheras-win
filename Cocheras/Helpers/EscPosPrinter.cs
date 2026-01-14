@@ -153,17 +153,44 @@ namespace Cocheras.Helpers
         }
 
         /// <summary>
-        /// Corta el papel (parcial o completo)
+        /// Avanza papel
         /// </summary>
-        public EscPosPrinter CutPaper(bool fullCut = true)
+        public EscPosPrinter FeedLines(int lines)
         {
-            // GS V - Corte de papel
-            AddCommand(new byte[] { 0x1D, 0x56, (byte)(fullCut ? 1 : 0) });
+            AddCommand(new byte[] { 0x1B, 0x64, (byte)lines });
             return this;
         }
 
         /// <summary>
-        /// Imprime texto destacado (para placa - texto grande y negrita)
+        /// Corta el papel (parcial o completo)
+        /// </summary>
+        public EscPosPrinter CutPaper(bool fullCut = true)
+        {
+            // Avanzar papel antes de cortar (asegura que el contenido esté completamente impreso)
+            FeedLines(3);
+            
+            // GS V - Corte de papel
+            // Para Hasar MIS1785: m=0 o 48 = corte completo, m=1 o 49 = corte parcial
+            // Usamos 0x30 (48) para corte completo o 0x31 (49) para parcial
+            byte cutMode = fullCut ? (byte)0x30 : (byte)0x31;
+            AddCommand(new byte[] { 0x1D, 0x56, cutMode });
+            
+            return this;
+        }
+
+        /// <summary>
+        /// Activa/desactiva modo de color invertido (reverse video)
+        /// </summary>
+        public EscPosPrinter SetInverseColors(bool inverse)
+        {
+            // ESC { n - Reverse video (n=1 activa, n=0 desactiva)
+            AddCommand(new byte[] { 0x1B, 0x7B, (byte)(inverse ? 1 : 0) });
+            return this;
+        }
+
+        /// <summary>
+        /// Imprime texto con fondo negro (rectángulo negro) - la placa
+        /// Usa reverse video para texto blanco sobre fondo negro
         /// </summary>
         public EscPosPrinter PrintInverse(string text, bool bold = false, byte fontSize = 0)
         {
@@ -171,25 +198,74 @@ namespace Cocheras.Helpers
             
             SetAlignment(1); // Centro
             
-            int maxLen = fontSize > 0 ? 24 : 48;
+            int maxLen = fontSize > 0 ? 18 : 40;
             string truncated = TruncateText(text, maxLen);
             
-            // Imprimir línea superior de guiones para simular caja
-            AddText(new string('─', Math.Min(truncated.Length + 4, 48)));
-            AddText("\n");
-            
-            // Imprimir texto destacado
+            // Activar reverse video (fondo negro, texto blanco)
+            SetInverseColors(true);
             SetBold(true);
             if (fontSize > 0) SetFontSize(fontSize);
-            AddText(" " + truncated + " ");
+            
+            // Calcular padding para centrar el texto
+            int totalWidth = 48;
+            int textWidth = truncated.Length;
+            int padding = (totalWidth - textWidth) / 2;
+            
+            // Imprimir línea superior del rectángulo (espacios que se verán como fondo negro)
+            AddText(new string(' ', totalWidth));
             AddText("\n");
             
-            // Imprimir línea inferior
+            // Imprimir línea con texto centrado
+            AddText(new string(' ', padding));
+            AddText(truncated);
+            AddText(new string(' ', totalWidth - textWidth - padding));
+            AddText("\n");
+            
+            // Imprimir línea inferior del rectángulo
+            AddText(new string(' ', totalWidth));
+            AddText("\n");
+            
+            // Desactivar reverse video
+            SetInverseColors(false);
             SetBold(false);
             if (fontSize > 0) SetFontSize(0);
-            AddText(new string('─', Math.Min(truncated.Length + 4, 48)));
+            SetAlignment(0);
+            return this;
+        }
+
+        /// <summary>
+        /// Imprime un círculo simulado con texto (para el logo E)
+        /// </summary>
+        public EscPosPrinter PrintCircleWithText(string text, bool bold = true, byte fontSize = 3)
+        {
+            if (string.IsNullOrEmpty(text)) return this;
+            
+            SetAlignment(1); // Centro
+            
+            // Activar reverse video para el círculo (fondo negro, texto blanco)
+            SetInverseColors(true);
+            
+            // Crear un círculo más redondeado con caracteres
+            // Línea superior del círculo
+            AddText("   ██████   ");
             AddText("\n");
             
+            // Líneas laterales con texto en el centro
+            AddText("  ██");
+            SetBold(bold);
+            if (fontSize > 0) SetFontSize(fontSize);
+            AddText("  " + text + "  ");
+            SetBold(false);
+            if (fontSize > 0) SetFontSize(0);
+            AddText("██  ");
+            AddText("\n");
+            
+            // Línea inferior del círculo
+            AddText("   ██████   ");
+            AddText("\n");
+            
+            // Desactivar reverse video
+            SetInverseColors(false);
             SetAlignment(0);
             return this;
         }

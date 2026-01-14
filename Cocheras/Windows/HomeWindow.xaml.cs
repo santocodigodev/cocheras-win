@@ -1170,8 +1170,8 @@ namespace Cocheras.Windows
                 // Espacio inicial
                 printer.PrintEmptyLine(1);
 
-                // Logo/Header - Círculo con E (simulado con texto grande)
-                printer.PrintCenter("E", bold: true, fontSize: 3);
+                // Logo/Header - Círculo negro con E en blanco
+                printer.PrintCircleWithText("E", bold: true, fontSize: 3);
                 printer.PrintEmptyLine(1);
 
                 // parking (negrita, tamaño doble ancho)
@@ -1181,7 +1181,7 @@ namespace Cocheras.Windows
                 // Nombre del estacionamiento
                 printer.PrintCenter(nombreEmpresa, bold: false, fontSize: 0);
                 
-                // Tarifa (en la misma línea o siguiente)
+                // Tarifa (XHORA)
                 printer.PrintCenter(tarifaNombre, bold: false, fontSize: 0);
                 printer.PrintEmptyLine(1);
 
@@ -1189,8 +1189,8 @@ namespace Cocheras.Windows
                 printer.PrintBarcode(ticketId.ToString(), height: 80, width: 2, position: 2);
                 printer.PrintEmptyLine(1);
 
-                // Placa destacada (texto grande y negrita)
-                printer.PrintCenter(placa, bold: true, fontSize: 2);
+                // Placa en rectángulo negro con texto blanco (usando reverse video)
+                printer.PrintInverse(placa, bold: true, fontSize: 2);
                 printer.PrintEmptyLine(1);
 
                 // Fecha/hora entrada
