@@ -101,3 +101,4 @@ C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windo
 C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.xml
 C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.xml
 C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.xml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.sourcelink.json

@@ -60,7 +60,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,6 +71,10 @@
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "HomeWindow.xaml.cs",
@@ -78,14 +82,10 @@
               "RelativeDocumentMoniker": "Cocheras\\Windows\\HomeWindow.xaml.cs",
               "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\HomeWindow.xaml.cs",
               "RelativeToolTip": "Cocheras\\Windows\\HomeWindow.xaml.cs",
-              "ViewState": "AgIAAAktAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALoDAAAAAAAAAIAwwNQDAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T18:30:14Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -134,8 +134,7 @@
               "RelativeToolTip": "Cocheras\\Services\\DatabaseService.cs",
               "ViewState": "AgIAAC4NAAAAAAAAAAAiwP4LAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T19:55:01.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-04T19:55:01.049Z"
             },
             {
               "$type": "Document",
