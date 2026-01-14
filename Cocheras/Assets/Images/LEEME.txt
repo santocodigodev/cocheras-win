@@ -1,0 +1,19 @@
+INSTRUCCIONES PARA AGREGAR LA IMAGEN DE FONDO
+==============================================
+
+Para agregar la imagen de fondo del estacionamiento:
+
+1. Coloca tu imagen con uno de estos nombres:
+   - background.jpg (recomendado)
+   - background.png
+   - fondo.jpg
+   - fondo.png
+
+2. Ubica la imagen en una de estas ubicaciones:
+   - En la carpeta del ejecutable (junto a Cocheras.exe)
+   - En esta carpeta: Assets\Images\background.jpg
+
+3. La aplicación buscará automáticamente la imagen al iniciar.
+
+4. Si no encuentra la imagen, usará un gradiente oscuro como respaldo.
+

@@ -1,0 +1,303 @@
+<Window x:Class="Cocheras.Windows.ConfiguracionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Configuración" 
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header con navegación -->
+        <Border Grid.Row="0" 
+                Background="#F8FAFC" 
+                Height="60"
+                BorderBrush="#E5E7EB"
+                BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                <Button x:Name="BtnCategorias" 
+                        Content="Categorías" 
+                        Height="45"
+                        Width="120"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="#3B82F6"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnCategorias_Click"/>
+                <Button x:Name="BtnTarifas" 
+                        Content="Tarifas" 
+                        Height="45"
+                        Width="120"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#334155"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnTarifas_Click"/>
+                <Button x:Name="BtnPagos" 
+                        Content="Pagos" 
+                        Height="45"
+                        Width="120"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#334155"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnPagos_Click"/>
+                <Button x:Name="BtnUsuarios" 
+                        Content="Usuarios" 
+                        Height="45"
+                        Width="120"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#334155"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnUsuarios_Click"/>
+                <Button x:Name="BtnMediosPago" 
+                        Content="Medios de Pago" 
+                        Height="45"
+                        Width="150"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#334155"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnMediosPago_Click"/>
+                <Button x:Name="BtnInformes" 
+                        Content="Informes" 
+                        Height="45"
+                        Width="120"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#334155"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnInformes_Click"/>
+                <Button x:Name="BtnAjustes" 
+                        Content="Ajustes" 
+                        Height="45"
+                        Width="120"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#334155"
+                        BorderThickness="0"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="BtnAjustes_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Contenido -->
+        <Grid Grid.Row="1" Background="White">
+            <!-- Panel Categorías -->
+            <Grid x:Name="PanelCategorias" 
+                  Visibility="Visible"
+                  Margin="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Título -->
+                <TextBlock Grid.Row="0"
+                           Text="Categorías"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="#1F2937"
+                           Margin="0,0,0,20"/>
+
+                <!-- Lista de categorías con drag and drop -->
+                <Border Grid.Row="1"
+                        Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="20">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ItemsCategoriasLista">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White"
+                                            BorderBrush="#E5E7EB"
+                                            BorderThickness="1"
+                                            CornerRadius="6"
+                                            Margin="0,0,0,10"
+                                            Padding="15"
+                                            MouseLeftButtonDown="CategoriaItem_MouseLeftButtonDown"
+                                            MouseMove="CategoriaItem_MouseMove"
+                                            MouseLeftButtonUp="CategoriaItem_MouseLeftButtonUp"
+                                            AllowDrop="True"
+                                            Drop="CategoriaItem_Drop"
+                                            DragOver="CategoriaItem_DragOver">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Icono de arrastre -->
+                                            <TextBlock Grid.Column="0"
+                                                       Text="☰"
+                                                       FontSize="18"
+                                                       Foreground="#9CA3AF"
+                                                       VerticalAlignment="Center"
+                                                       Margin="0,0,15,0"
+                                                       Cursor="SizeAll"
+                                                       MouseLeftButtonDown="CategoriaItem_MouseLeftButtonDown"
+                                                       MouseMove="CategoriaItem_MouseMove"
+                                                       MouseLeftButtonUp="CategoriaItem_MouseLeftButtonUp"/>
+
+                                            <!-- Nombre de la categoría -->
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Nombre}"
+                                                       FontSize="16"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#1F2937"
+                                                       VerticalAlignment="Center"/>
+
+                                            <!-- Botones de acción -->
+                                            <StackPanel Grid.Column="2"
+                                                       Orientation="Horizontal">
+                                                <Button Content="Modificar"
+                                                        Width="100"
+                                                        Height="35"
+                                                        FontSize="12"
+                                                        Background="Transparent"
+                                                        Foreground="#3B82F6"
+                                                        BorderBrush="#3B82F6"
+                                                        BorderThickness="1"
+                                                        Margin="0,0,10,0"
+                                                        Cursor="Hand"
+                                                        Click="BtnModificarCategoria_Click"
+                                                        Tag="{Binding}"/>
+                                                <Button Content="Eliminar"
+                                                        Width="100"
+                                                        Height="35"
+                                                        FontSize="12"
+                                                        Background="Transparent"
+                                                        Foreground="#EF4444"
+                                                        BorderBrush="#EF4444"
+                                                        BorderThickness="1"
+                                                        Cursor="Hand"
+                                                        Click="BtnEliminarCategoria_Click"
+                                                        Tag="{Binding}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- Instrucción y botón Nueva Categoría -->
+                <StackPanel Grid.Row="2"
+                           Orientation="Horizontal"
+                           HorizontalAlignment="Left"
+                           Margin="0,20,0,0">
+                    <TextBlock Text="* Arrastra y suelta los elementos para "
+                               FontSize="12"
+                               Foreground="#64748B"
+                               VerticalAlignment="Center"
+                               Margin="0,0,5,0"/>
+                    <TextBlock Text="ordenarlos"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               Foreground="#64748B"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Button Grid.Row="2"
+                        x:Name="BtnNuevaCategoria"
+                        Content="Nueva Categoría"
+                        Width="150"
+                        Height="40"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Background="Transparent"
+                        Foreground="#3B82F6"
+                        BorderBrush="#3B82F6"
+                        BorderThickness="1"
+                        HorizontalAlignment="Right"
+                        Cursor="Hand"
+                        Click="BtnNuevaCategoria_Click"/>
+            </Grid>
+
+            <!-- Otros paneles (inicialmente ocultos) -->
+            <Grid x:Name="PanelTarifas" Visibility="Collapsed">
+                <TextBlock Text="Tarifas" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid x:Name="PanelPagos" Visibility="Collapsed">
+                <TextBlock Text="Pagos" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid x:Name="PanelUsuarios" Visibility="Collapsed">
+                <TextBlock Text="Usuarios" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid x:Name="PanelMediosPago" Visibility="Collapsed">
+                <TextBlock Text="Medios de Pago" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid x:Name="PanelInformes" Visibility="Collapsed">
+                <TextBlock Text="Informes" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid x:Name="PanelAjustes" Visibility="Collapsed">
+                <TextBlock Text="Ajustes" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
+

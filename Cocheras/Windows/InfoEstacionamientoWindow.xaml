@@ -1,0 +1,213 @@
+<Window x:Class="Cocheras.Windows.InfoEstacionamientoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Información del Estacionamiento" 
+        SizeToContent="WidthAndHeight"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MinWidth="450"
+        MaxWidth="500">
+    <Border CornerRadius="8" 
+            Background="#F5F5F5" 
+            BorderThickness="0"
+            Effect="{StaticResource ShadowEffect}">
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" 
+                    Background="#1E3A8A" 
+                    CornerRadius="8,8,0,0" 
+                    Margin="-25,-25,-25,15"
+                    Height="50">
+                <Grid>
+                    <TextBlock Text="Último paso" 
+                               FontSize="16" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                    <Button x:Name="BtnCerrar" 
+                            Content="✕" 
+                            FontSize="16"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="35" 
+                            Height="35"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0,0,8,0"
+                            Cursor="Hand"
+                            Click="BtnCerrar_Click"/>
+                </Grid>
+            </Border>
+
+            <!-- Subtítulo -->
+            <TextBlock Grid.Row="1" 
+                       Text="Último paso, completa la siguiente información" 
+                       FontSize="12" 
+                       Foreground="#334155"
+                       Margin="0,0,0,15"
+                       TextWrapping="Wrap"/>
+
+            <!-- Formulario -->
+            <StackPanel Grid.Row="2" MinWidth="400">
+                <!-- Sección Empresa -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Ingresa los datos de la Empresa" 
+                               FontSize="13" 
+                               FontWeight="Bold" 
+                               Foreground="#1E3A8A"
+                               Margin="0,0,0,10"/>
+                    
+                    <StackPanel>
+                        <!-- Nombre -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Nombre" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#334155"
+                                       Margin="0,0,0,3"/>
+                            <TextBox x:Name="TxtNombre" 
+                                     Height="40" 
+                                     Padding="8,8"
+                                     FontSize="12"
+                                     VerticalContentAlignment="Center"
+                                     BorderBrush="#D1D5DB"
+                                     BorderThickness="1"
+                                     Background="White"
+                                     Text="Estacionamiento"/>
+                        </StackPanel>
+
+                        <!-- Dirección -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Dirección" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#334155"
+                                       Margin="0,0,0,3"/>
+                            <TextBox x:Name="TxtDireccion" 
+                                     Height="40" 
+                                     Padding="8,8"
+                                     FontSize="12"
+                                     VerticalContentAlignment="Center"
+                                     BorderBrush="#D1D5DB"
+                                     BorderThickness="1"
+                                     Background="White"/>
+                        </StackPanel>
+
+                        <!-- Ciudad -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Ciudad" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#334155"
+                                       Margin="0,0,0,3"/>
+                            <TextBox x:Name="TxtCiudad" 
+                                     Height="40" 
+                                     Padding="8,8"
+                                     FontSize="12"
+                                     VerticalContentAlignment="Center"
+                                     BorderBrush="#D1D5DB"
+                                     BorderThickness="1"
+                                     Background="White"/>
+                        </StackPanel>
+
+                        <!-- País -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="País" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#334155"
+                                       Margin="0,0,0,3"/>
+                            <ComboBox x:Name="CmbPais" 
+                                      Height="40" 
+                                      Padding="8,8"
+                                      FontSize="12"
+                                      VerticalContentAlignment="Center"
+                                      BorderBrush="#D1D5DB"
+                                      BorderThickness="1"
+                                      Background="White"
+                                      SelectedIndex="0"/>
+                        </StackPanel>
+
+                        <!-- Teléfono -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Teléfono" 
+                                       FontSize="11" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#334155"
+                                       Margin="0,0,0,3"/>
+                            <TextBox x:Name="TxtTelefono" 
+                                     Height="40" 
+                                     Padding="8,8"
+                                     FontSize="12"
+                                     VerticalContentAlignment="Center"
+                                     BorderBrush="#D1D5DB"
+                                     BorderThickness="1"
+                                     Background="White"/>
+                            <TextBlock Text="(opcional)" 
+                                       FontSize="9" 
+                                       Foreground="#94A3B8"
+                                       Margin="2,2,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Sección Impresora -->
+                <StackPanel>
+                    <TextBlock Text="Selecciona la impresora para los Tickets" 
+                               FontSize="13" 
+                               FontWeight="Bold" 
+                               Foreground="#1E3A8A"
+                               Margin="0,0,0,10"/>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Imprimir en" 
+                                   FontSize="11" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#334155"
+                                   Margin="0,0,0,3"/>
+                        <ComboBox x:Name="CmbImpresora" 
+                                  Height="40" 
+                                  Padding="8,8"
+                                  FontSize="12"
+                                  VerticalContentAlignment="Center"
+                                  BorderBrush="#D1D5DB"
+                                  BorderThickness="1"
+                                  Background="White"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Botón -->
+            <Border Grid.Row="3" 
+                    CornerRadius="6"
+                    Margin="0,15,0,0"
+                    Background="#1E3A8A">
+                <Button x:Name="BtnContinuar" 
+                        Content="CONTINUAR" 
+                        Height="38" 
+                        FontSize="13" 
+                        FontWeight="Bold"
+                        Background="Transparent" 
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnContinuar_Click"/>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+; Este archivo configura la emulación de Internet Explorer 11 para el control WebBrowser
+; Solo es necesario si estás usando el control WebBrowser (basado en IE) en lugar de WebView2
+; 
+; INSTRUCCIONES:
+; 1. Reemplaza "Cocheras.exe" con el nombre real de tu ejecutable
+; 2. Haz doble clic en este archivo para aplicar la configuración
+; 3. Reinicia la aplicación
+;
+; NOTA: Con WebView2 (Microsoft Edge/Chromium) NO necesitas este archivo,
+; ya que WebView2 usa un motor moderno que no depende de IE.
+
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"Cocheras.exe"=dword:00002af8
+
+; Valores de emulación disponibles:
+; IE7  = 0x1F40 (7000)
+; IE8  = 0x1F40 (8000)
+; IE9  = 0x2328 (9000)
+; IE10 = 0x2710 (10000)
+; IE11 = 0x2AF8 (11000) <- Este es el valor usado arriba
+

@@ -1,0 +1,247 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\windows\\homewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\windows\\homewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\juncodde\\AppData\\Local\\Temp\\.vsdbgsrc\\1b77cb146b3dc6f60ca3b7de619b68fc3904b4f03155b255fa425d7d7bd36ae9\\PropertyPathWorker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\models\\precio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\models\\precio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\windows\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\windows\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\windows\\simuladortarifaswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\windows\\simuladortarifaswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\windows\\simuladortarifaswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\windows\\simuladortarifaswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\windows\\crearadminwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\windows\\crearadminwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|c:\\users\\juncodde\\desktop\\code\\cocheras\\cocheras\\cocheras\\assets\\images\\leeme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{905B1ACC-DA4C-439A-B2A1-9CEBF0875068}|Cocheras\\Cocheras.csproj|solutionrelative:cocheras\\assets\\images\\leeme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\juncodde\\AppData\\Local\\Temp\\.vsdbgsrc\\e838e50353acd66f964b3aa62f2ead8b89cb9228844b858a3e0b8d14655eca6e\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\HomeWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Cocheras\\Windows\\HomeWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\HomeWindow.xaml.cs",
+              "RelativeToolTip": "Cocheras\\Windows\\HomeWindow.xaml.cs",
+              "ViewState": "AgIAAAktAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T18:30:14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PropertyPathWorker.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\AppData\\Local\\Temp\\.vsdbgsrc\\1b77cb146b3dc6f60ca3b7de619b68fc3904b4f03155b255fa425d7d7bd36ae9\\PropertyPathWorker.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1b77cb146b3dc6f60ca3b7de619b68fc3904b4f03155b255fa425d7d7bd36ae9\\PropertyPathWorker.cs",
+              "ToolTip": "C:\\Users\\juncodde\\AppData\\Local\\Temp\\.vsdbgsrc\\1b77cb146b3dc6f60ca3b7de619b68fc3904b4f03155b255fa425d7d7bd36ae9\\PropertyPathWorker.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1b77cb146b3dc6f60ca3b7de619b68fc3904b4f03155b255fa425d7d7bd36ae9\\PropertyPathWorker.cs [Read Only]",
+              "ViewState": "AgIAAKAEAAAAAAAAAAAuwLAEAAAEAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T19:14:47.909Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Precio.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Models\\Precio.cs",
+              "RelativeDocumentMoniker": "Cocheras\\Models\\Precio.cs",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Models\\Precio.cs",
+              "RelativeToolTip": "Cocheras\\Models\\Precio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-12T19:13:54.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Cocheras\\Windows\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "Cocheras\\Windows\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAkwHsAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T22:24:04.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Services\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "Cocheras\\Services\\DatabaseService.cs",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Services\\DatabaseService.cs",
+              "RelativeToolTip": "Cocheras\\Services\\DatabaseService.cs",
+              "ViewState": "AgIAAC4NAAAAAAAAAAAiwP4LAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T19:55:01.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "Cocheras\\Windows\\LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\LoginWindow.xaml",
+              "RelativeToolTip": "Cocheras\\Windows\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-11T22:19:59.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SimuladorTarifasWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\SimuladorTarifasWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Cocheras\\Windows\\SimuladorTarifasWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\SimuladorTarifasWindow.xaml.cs",
+              "RelativeToolTip": "Cocheras\\Windows\\SimuladorTarifasWindow.xaml.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAYwBEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T22:06:47.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SimuladorTarifasWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\SimuladorTarifasWindow.xaml",
+              "RelativeDocumentMoniker": "Cocheras\\Windows\\SimuladorTarifasWindow.xaml",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\SimuladorTarifasWindow.xaml",
+              "RelativeToolTip": "Cocheras\\Windows\\SimuladorTarifasWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-11T22:06:41.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CrearAdminWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\CrearAdminWindow.xaml",
+              "RelativeDocumentMoniker": "Cocheras\\Windows\\CrearAdminWindow.xaml",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Windows\\CrearAdminWindow.xaml",
+              "RelativeToolTip": "Cocheras\\Windows\\CrearAdminWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-04T20:03:23.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "XamlReader.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\AppData\\Local\\Temp\\.vsdbgsrc\\e838e50353acd66f964b3aa62f2ead8b89cb9228844b858a3e0b8d14655eca6e\\XamlReader.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\e838e50353acd66f964b3aa62f2ead8b89cb9228844b858a3e0b8d14655eca6e\\XamlReader.cs",
+              "ToolTip": "C:\\Users\\juncodde\\AppData\\Local\\Temp\\.vsdbgsrc\\e838e50353acd66f964b3aa62f2ead8b89cb9228844b858a3e0b8d14655eca6e\\XamlReader.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\e838e50353acd66f964b3aa62f2ead8b89cb9228844b858a3e0b8d14655eca6e\\XamlReader.cs",
+              "ViewState": "AgIAAJIBAAAAAAAAAAAuwKMBAAACAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T19:54:24.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Cocheras\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\MainWindow.xaml",
+              "RelativeToolTip": "Cocheras\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-04T19:32:56.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Cocheras\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Cocheras\\MainWindow.xaml.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAowEEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T19:32:53.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LEEME.txt",
+              "DocumentMoniker": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Assets\\Images\\LEEME.txt",
+              "RelativeDocumentMoniker": "Cocheras\\Assets\\Images\\LEEME.txt",
+              "ToolTip": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Assets\\Images\\LEEME.txt",
+              "RelativeToolTip": "Cocheras\\Assets\\Images\\LEEME.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-12-04T20:08:44.698Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

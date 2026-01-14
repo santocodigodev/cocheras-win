@@ -1,0 +1,16 @@
+<Window x:Class="Cocheras.Windows.PantallaClienteWindowWebBrowser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pantalla Cliente"
+        WindowStyle="None"
+        WindowState="Normal"
+        WindowStartupLocation="Manual"
+        ResizeMode="NoResize"
+        Background="Black"
+        Topmost="True"
+        ShowInTaskbar="False">
+    <Grid>
+        <!-- WebBrowser se crea programáticamente en el código para poder configurar ScriptErrorsSuppressed -->
+    </Grid>
+</Window>
+

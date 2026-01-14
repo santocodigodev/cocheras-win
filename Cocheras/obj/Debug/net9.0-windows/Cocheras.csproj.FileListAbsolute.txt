@@ -1,0 +1,103 @@
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.exe
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.deps.json
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.runtimeconfig.json
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.pdb
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\MainWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\App.g.cs
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras_MarkupCompile.cache
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras_MarkupCompile.lref
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\MainWindow.baml
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.g.resources
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.AssemblyInfoInputs.cache
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.AssemblyInfo.cs
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.csproj.CoreCompileInputs.cache
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\refint\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.pdb
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.genruntimeconfig.cache
+C:\Users\juncodde\Desktop\Code\Frutos Congelados ZN\Cocheras\Cocheras\obj\Debug\net9.0-windows\ref\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.csproj.AssemblyReference.cache
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\MainWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\App.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras_MarkupCompile.cache
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras_MarkupCompile.lref
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\refint\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.pdb
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\CrearAdminWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\InfoEstacionamientoWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\LoginWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\CrearAdminWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\InfoEstacionamientoWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\LoginWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.exe
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.deps.json
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.runtimeconfig.json
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Cocheras.pdb
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Data.Sqlite.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\SQLitePCLRaw.batteries_v2.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\SQLitePCLRaw.core.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\SQLitePCLRaw.provider.e_sqlite3.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\System.Data.SQLite.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\browser-wasm\nativeassets\net9.0\e_sqlite3.a
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-arm\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-arm64\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-armel\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-musl-arm\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-musl-s390x\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-musl-x64\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-ppc64le\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-s390x\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-x64\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-x86\native\libe_sqlite3.so
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\osx-arm64\native\libe_sqlite3.dylib
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\osx-x64\native\libe_sqlite3.dylib
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\App.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\MainWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.g.resources
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.AssemblyInfoInputs.cache
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.AssemblyInfo.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.csproj.CoreCompileInputs.cache
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.csproj.Up2Date
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras.genruntimeconfig.cache
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\ref\Cocheras.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Cocheras_Content.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Assets\Images\background.jpg
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\HomeWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\HomeWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\ConfiguracionWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\ConfiguracionWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\CategoriaWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\CategoriaWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\SimuladorTarifasWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\SimuladorTarifasWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Assets\Images\logo.png
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\PantallaClienteWindow.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\PantallaClienteWindow.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\PantallaClienteWindowWebBrowser.baml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\obj\Debug\net9.0-windows\Windows\PantallaClienteWindowWebBrowser.g.cs
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.xml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.xml
+C:\Users\juncodde\Desktop\Code\Cocheras\Cocheras\Cocheras\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.xml

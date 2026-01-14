@@ -1,0 +1,309 @@
+<Window x:Class="Cocheras.Windows.SimuladorTarifasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Simulador de Tarifas" 
+        SizeToContent="WidthAndHeight"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="Transparent"
+        MinWidth="380"
+        MaxWidth="450"
+        AllowsTransparency="True">
+    <Border BorderBrush="#D1D5DB"
+            BorderThickness="2"
+            CornerRadius="8"
+            Background="Transparent"
+            x:Name="BorderPrincipal">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header azul -->
+            <Border Grid.Row="0"
+                    Background="#3B82F6"
+                    Height="40"
+                    Padding="15,0"
+                    CornerRadius="6,6,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Simulador de Tarifas"
+                           FontSize="15"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+
+                <Button Grid.Column="1"
+                        x:Name="BtnCerrar"
+                        Content="✕"
+                        Width="25"
+                        Height="25"
+                        FontSize="13"
+                        FontWeight="Bold"
+                        Background="Transparent"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnCerrar_Click"/>
+            </Grid>
+        </Border>
+
+            <!-- Contenido -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          Padding="18,15"
+                          Background="Transparent">
+            <StackPanel>
+                <!-- Texto descriptivo -->
+                <TextBlock Text="Establece el tipo de Tarifa, la Categoría y su tiempo para realizar el análisis del Importe."
+                           FontSize="11"
+                           FontStyle="Italic"
+                           Foreground="#64748B"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,15"
+                           LineHeight="14"/>
+
+                <!-- Tipo de Tarifa -->
+                <TextBlock Text="Tipo de Tarifa"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#374151"
+                           Margin="0,0,0,5"/>
+                <ComboBox x:Name="CmbTipoTarifa"
+                          Height="36"
+                          Padding="10,0"
+                          FontSize="12"
+                          BorderBrush="#D1D5DB"
+                          BorderThickness="1"
+                          Background="White"
+                          VerticalContentAlignment="Center"
+                          Margin="0,0,0,12"/>
+
+                <!-- Categoría -->
+                <TextBlock Text="Categoría"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#374151"
+                           Margin="0,0,0,5"/>
+                <ComboBox x:Name="CmbCategoria"
+                          Height="36"
+                          Padding="10,0"
+                          FontSize="12"
+                          BorderBrush="#D1D5DB"
+                          BorderThickness="1"
+                          Background="White"
+                          VerticalContentAlignment="Center"
+                          Margin="0,0,0,12"/>
+
+                <!-- Inicio -->
+                <TextBlock Text="Inicio"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#374151"
+                           Margin="0,0,0,5"/>
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker Grid.Column="0"
+                                x:Name="DpFechaInicio"
+                                Height="36"
+                                FontSize="12"
+                                BorderBrush="#D1D5DB"
+                                BorderThickness="1"
+                                Background="White"/>
+                    <TextBlock Grid.Column="1"
+                               Text=""
+                               VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="2"
+                              x:Name="CmbHoraInicio"
+                              Height="36"
+                              Padding="8,0"
+                              FontSize="12"
+                              BorderBrush="#D1D5DB"
+                              BorderThickness="1"
+                              Background="White"
+                              VerticalContentAlignment="Center"/>
+                    <TextBlock Grid.Column="3"
+                               Text=":"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#374151"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                    <ComboBox Grid.Column="4"
+                              x:Name="CmbMinutoInicio"
+                              Height="36"
+                              Padding="8,0"
+                              FontSize="12"
+                              BorderBrush="#D1D5DB"
+                              BorderThickness="1"
+                              Background="White"
+                              VerticalContentAlignment="Center"/>
+                </Grid>
+
+                <!-- Días -->
+                <TextBlock Text="Días"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#374151"
+                           Margin="0,0,0,5"/>
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0"
+                             x:Name="TxtDias"
+                             Height="36"
+                             Padding="10,0"
+                             FontSize="12"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"
+                             VerticalContentAlignment="Center"
+                             Text="0"
+                             PreviewTextInput="TxtDias_PreviewTextInput"/>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                Margin="4,0,0,0">
+                        <Button Content="▲"
+                                Width="22"
+                                Height="16"
+                                FontSize="9"
+                                Background="Transparent"
+                                BorderBrush="#D1D5DB"
+                                BorderThickness="1"
+                                Padding="0"
+                                Cursor="Hand"
+                                Click="BtnDiasUp_Click"/>
+                        <Button Content="▼"
+                                Width="22"
+                                Height="16"
+                                FontSize="9"
+                                Background="Transparent"
+                                BorderBrush="#D1D5DB"
+                                BorderThickness="1"
+                                Padding="0"
+                                Margin="0,1,0,0"
+                                Cursor="Hand"
+                                Click="BtnDiasDown_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Horas y Minutos -->
+                <TextBlock Text="Horas y Minutos"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#374151"
+                           Margin="0,0,0,5"/>
+                <Grid Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0"
+                             x:Name="TxtHoras"
+                             Height="36"
+                             Padding="10,0"
+                             FontSize="12"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"
+                             VerticalContentAlignment="Center"
+                             Text="00"
+                             HorizontalContentAlignment="Center"
+                             PreviewTextInput="TxtHoras_PreviewTextInput"/>
+                    <TextBlock Grid.Column="1"
+                               Text=":"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#374151"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                    <TextBox Grid.Column="2"
+                             x:Name="TxtMinutos"
+                             Height="36"
+                             Padding="10,0"
+                             FontSize="12"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"
+                             VerticalContentAlignment="Center"
+                             Text="00"
+                             HorizontalContentAlignment="Center"
+                             PreviewTextInput="TxtMinutos_PreviewTextInput"/>
+                    <StackPanel Grid.Column="3"
+                                Orientation="Vertical"
+                                Margin="4,0,0,0">
+                        <Button Content="▲"
+                                Width="22"
+                                Height="16"
+                                FontSize="9"
+                                Background="Transparent"
+                                BorderBrush="#D1D5DB"
+                                BorderThickness="1"
+                                Padding="0"
+                                Cursor="Hand"
+                                Click="BtnHorasUp_Click"/>
+                        <Button Content="▼"
+                                Width="22"
+                                Height="16"
+                                FontSize="9"
+                                Background="Transparent"
+                                BorderBrush="#D1D5DB"
+                                BorderThickness="1"
+                                Padding="0"
+                                Margin="0,1,0,0"
+                                Cursor="Hand"
+                                Click="BtnHorasDown_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Detalle para el Cliente -->
+                <Border Background="#F3F4F6"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="15">
+                    <StackPanel>
+                        <TextBlock Text="Detalle para el Cliente"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="#1F2937"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock x:Name="TxtDetalleCalculo"
+                                   Text="0 x Hora ($0) = $0"
+                                   FontSize="12"
+                                   Foreground="#64748B"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock x:Name="TxtTotalPagar"
+                                   Text="El cliente paga: $0"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="#1F2937"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>
+

@@ -1,0 +1,21 @@
+﻿<Window x:Class="Cocheras.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cocheras"
+        mc:Ignorable="d"
+        Title="Sistema de Estacionamiento"
+        Icon="pack://application:,,,/Assets/Images/logo.png"
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Black"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Image x:Name="BackgroundImage" 
+               Stretch="UniformToFill"/>
+        <Border Background="#CC000000" 
+                Opacity="0.6"/>
+    </Grid>
+</Window>

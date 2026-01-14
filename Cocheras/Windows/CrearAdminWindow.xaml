@@ -1,0 +1,208 @@
+<Window x:Class="Cocheras.Windows.CrearAdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Crear Administrador" 
+        SizeToContent="WidthAndHeight"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MinWidth="450"
+        MaxWidth="500">
+    <Border CornerRadius="8" 
+            Background="#F5F5F5" 
+            BorderThickness="0"
+            Effect="{StaticResource ShadowEffect}">
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" 
+                    Background="#1E3A8A" 
+                    CornerRadius="8,8,0,0" 
+                    Margin="-25,-25,-25,15"
+                    Height="50">
+                <Grid>
+                    <TextBlock Text="Creación de la Cuenta de Administrador" 
+                               FontSize="15" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="40,0,40,0"/>
+                    <Button x:Name="BtnCerrar" 
+                            Content="✕" 
+                            FontSize="16"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="35" 
+                            Height="35"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0,0,8,0"
+                            Cursor="Hand"
+                            Click="BtnCerrar_Click"/>
+                </Grid>
+            </Border>
+
+            <!-- Título -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,12">
+                <TextBlock Text="Control de cocheras" 
+                           FontSize="26" 
+                           FontWeight="Bold" 
+                           Foreground="#1E3A8A"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,5"/>
+                <TextBlock Text="Crea una cuenta de Administrador para comenzar" 
+                           FontSize="11" 
+                           Foreground="#64748B"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Formulario -->
+            <StackPanel Grid.Row="2" MinWidth="400">
+                <!-- Nombre -->
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Nombre" 
+                               FontSize="11" 
+                               FontWeight="SemiBold" 
+                               Foreground="#334155"
+                               Margin="0,0,0,3"/>
+                    <TextBox x:Name="TxtNombre" 
+                             Height="40" 
+                             Padding="8,8"
+                             FontSize="12"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"/>
+                </StackPanel>
+
+                <!-- Apellido -->
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Apellido" 
+                               FontSize="11" 
+                               FontWeight="SemiBold" 
+                               Foreground="#334155"
+                               Margin="0,0,0,3"/>
+                    <TextBox x:Name="TxtApellido" 
+                             Height="36" 
+                             Padding="8,6"
+                             FontSize="12"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"/>
+                </StackPanel>
+
+                <!-- Usuario -->
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Usuario" 
+                               FontSize="11" 
+                               FontWeight="SemiBold" 
+                               Foreground="#334155"
+                               Margin="0,0,0,3"/>
+                    <TextBox x:Name="TxtUsername" 
+                             Height="36" 
+                             Padding="8,6"
+                             FontSize="12"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"/>
+                </StackPanel>
+
+                <!-- Contraseña -->
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Escribe una Clave" 
+                               FontSize="11" 
+                               FontWeight="SemiBold" 
+                               Foreground="#334155"
+                               Margin="0,0,0,3"/>
+                    <PasswordBox x:Name="TxtPassword" 
+                                 Height="40" 
+                                 Padding="8,8"
+                                 FontSize="12"
+                                 VerticalContentAlignment="Center"
+                                 BorderBrush="#D1D5DB"
+                                 BorderThickness="1"/>
+                </StackPanel>
+
+                <!-- Repetir Contraseña -->
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Repite la Clave" 
+                               FontSize="11" 
+                               FontWeight="SemiBold" 
+                               Foreground="#334155"
+                               Margin="0,0,0,3"/>
+                    <PasswordBox x:Name="TxtPasswordRepeat" 
+                                 Height="36" 
+                                 Padding="8,6"
+                                 FontSize="12"
+                                 VerticalContentAlignment="Center"
+                                 BorderBrush="#D1D5DB"
+                                 BorderThickness="1"/>
+                </StackPanel>
+
+                <!-- Email -->
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Email para recuperación de contraseña" 
+                               FontSize="11" 
+                               FontWeight="SemiBold" 
+                               Foreground="#334155"
+                               Margin="0,0,0,3"/>
+                    <TextBox x:Name="TxtEmail" 
+                             Height="36" 
+                             Padding="8,6"
+                             FontSize="12"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"
+                             Background="White"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Botón -->
+            <Border Grid.Row="3" 
+                    CornerRadius="6"
+                    Margin="0,12,0,0"
+                    Background="#1E3A8A">
+                <Button x:Name="BtnCrear" 
+                        Content="Crear Cuenta" 
+                        Height="38" 
+                        FontSize="13" 
+                        FontWeight="Bold"
+                        Background="Transparent" 
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnCrear_Click"/>
+            </Border>
+
+            <!-- Validaciones -->
+            <StackPanel Grid.Row="4" Margin="0,8,0,0">
+                <TextBlock Text="* El nombre de usuario debe contener al menos 4 caracteres" 
+                           FontSize="9" 
+                           Foreground="#64748B"
+                           Margin="0,0,0,2"/>
+                <TextBlock Text="* La clave debe contener al menos 6 caracteres" 
+                           FontSize="9" 
+                           Foreground="#64748B"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
