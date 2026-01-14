@@ -24,6 +24,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Cocheras.Models;
 using Cocheras.Services;
+using Cocheras.Helpers;
 
 namespace Cocheras.Windows
 {
@@ -984,63 +985,71 @@ namespace Cocheras.Windows
             string ciudad = _estacionamientoCache.Ciudad ?? string.Empty;
             string cajero = _username;
 
-            var pd = new PrintDocument();
-            pd.PrinterSettings.PrinterName = printerName;
-            pd.DefaultPageSettings.PaperSize = new PaperSize("Recibo", 300, 800);
-            pd.DefaultPageSettings.Margins = new Margins(5, 5, 5, 5);
-
-            pd.PrintPage += (s, ev) =>
+            try
             {
-                Graphics g = ev.Graphics;
-                int y = 8;
-                int centerX = ev.PageBounds.Width / 2;
-                using var brush = new SolidBrush(System.Drawing.Color.Black);
+                var printer = new EscPosPrinter(printerName);
 
-                void DrawCenter(string text, Font font, int extraSpacing = 4)
-                {
-                    var sz = g.MeasureString(text, font);
-                    g.DrawString(text, font, brush, centerX - sz.Width / 2, y);
-                    y += (int)sz.Height + extraSpacing;
-                }
-
-                DrawCenter("### Detalle ###", new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold));
-                DrawCenter(estacionamientoNombre, new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold));
+                // Header
+                printer.PrintEmptyLine(1);
+                printer.PrintCenter("### Detalle ###", bold: true, fontSize: 0);
+                printer.PrintCenter(estacionamientoNombre, bold: true, fontSize: 0);
+                
                 if (!string.IsNullOrWhiteSpace(direccion))
-                    DrawCenter(direccion, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                    printer.PrintCenter(direccion, bold: false, fontSize: 0);
                 if (!string.IsNullOrWhiteSpace(ciudad))
-                    DrawCenter(ciudad, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                    printer.PrintCenter(ciudad, bold: false, fontSize: 0);
 
-                DrawCenter(fechaCobro.ToString("dd/MM/yy • HH:mm"), new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
-                DrawCenter($"Cajero: {cajero}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
-                DrawCenter($"Forma de Pago: {formaPago}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular), 8);
+                printer.PrintEmptyLine(1);
+                printer.PrintCenter(fechaCobro.ToString("dd/MM/yy • HH:mm"), bold: false, fontSize: 0);
+                printer.PrintCenter($"Cajero: {cajero}", bold: false, fontSize: 0);
+                printer.PrintCenter($"Forma de Pago: {formaPago}", bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
 
-                DrawCenter($"MATRICULA {placa}", new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold));
-                DrawCenter($"Categoría: {categoria.Nombre}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
-                DrawCenter($"Tarifa: {tarifa.Nombre}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
-                DrawCenter($"Entrada: {ticket.FechaEntrada:dd/MM HH:mm}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                // Datos del ticket
+                printer.PrintCenter($"MATRICULA {placa}", bold: true, fontSize: 0);
+                printer.PrintCenter($"Categoría: {categoria.Nombre}", bold: false, fontSize: 0);
+                printer.PrintCenter($"Tarifa: {tarifa.Nombre}", bold: false, fontSize: 0);
+                printer.PrintCenter($"Entrada: {ticket.FechaEntrada:dd/MM HH:mm}", bold: false, fontSize: 0);
+                
                 string salidaTxt = ticket.FechaSalida.HasValue ? ticket.FechaSalida.Value.ToString("dd/MM HH:mm") : "--";
-                DrawCenter($"Salida: {salidaTxt}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                printer.PrintCenter($"Salida: {salidaTxt}", bold: false, fontSize: 0);
 
                 var diff = (ticket.FechaSalida ?? fechaCobro) - ticket.FechaEntrada;
                 if (diff.TotalMinutes < 0) diff = TimeSpan.Zero;
-                DrawCenter($"Permanencia: {FormatearDuracion(diff)}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular), 10);
+                printer.PrintCenter($"Permanencia: {FormatearDuracion(diff)}", bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
 
-                DrawCenter("DESCRIPCIÓN", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold));
-                DrawCenter(string.IsNullOrWhiteSpace(descripcion) ? $"TICKET #{ticket.Id}" : descripcion, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular), 8);
+                // Descripción
+                printer.PrintCenter("DESCRIPCIÓN", bold: true, fontSize: 0);
+                printer.PrintCenter(string.IsNullOrWhiteSpace(descripcion) ? $"TICKET #{ticket.Id}" : descripcion, bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
 
-                DrawCenter("ITEMS", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold));
+                // Items
+                printer.PrintCenter("ITEMS", bold: true, fontSize: 0);
                 foreach (var it in items)
                 {
-                    DrawCenter(it, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                    printer.PrintCenter(it, bold: false, fontSize: 0);
                 }
-                y += 6;
-                DrawCenter($"TOTAL: {total.ToString("$#,0.00")}", new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold));
+                printer.PrintEmptyLine(1);
 
-                y += 6;
-                DrawCenter("* NO VALIDO COMO FACTURA *", new System.Drawing.Font("Arial", 8, System.Drawing.FontStyle.Regular));
-            };
+                // Total
+                printer.PrintCenter($"TOTAL: {total.ToString("$#,0.00")}", bold: true, fontSize: 1);
+                printer.PrintEmptyLine(1);
 
-            pd.Print();
+                // Footer
+                printer.PrintCenter("* NO VALIDO COMO FACTURA *", bold: false, fontSize: 0);
+                printer.PrintEmptyLine(2);
+
+                // Corte de papel
+                printer.CutPaper(fullCut: true);
+
+                // Enviar a impresora
+                printer.Print();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error al imprimir recibo de cobro: {ex.Message}");
+            }
         }
 
         private void ImprimirReciboMensual(MovimientoMensual movimiento, string formaPago)
@@ -1064,53 +1073,57 @@ namespace Cocheras.Windows
             string clienteNombre = cliente.NombreCompleto;
             string matriculaReferencia = movimiento.MatriculaReferencia ?? cliente.MatriculasConcat?.Split('•').FirstOrDefault()?.Trim() ?? "";
 
-            var pd = new PrintDocument();
-            pd.PrinterSettings.PrinterName = printerName;
-            pd.DefaultPageSettings.PaperSize = new PaperSize("Recibo", 300, 800);
-            pd.DefaultPageSettings.Margins = new Margins(5, 5, 5, 5);
-
-            pd.PrintPage += (s, ev) =>
+            try
             {
-                Graphics g = ev.Graphics;
-                int y = 8;
-                int centerX = ev.PageBounds.Width / 2;
-                using var brush = new SolidBrush(System.Drawing.Color.Black);
+                var printer = new EscPosPrinter(printerName);
 
-                void DrawCenter(string text, Font font, int extraSpacing = 4)
-                {
-                    var sz = g.MeasureString(text, font);
-                    g.DrawString(text, font, brush, centerX - sz.Width / 2, y);
-                    y += (int)sz.Height + extraSpacing;
-                }
-
-                DrawCenter("### RECIBO ###", new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold));
-                DrawCenter(estacionamientoNombre, new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold));
+                // Header
+                printer.PrintEmptyLine(1);
+                printer.PrintCenter("### RECIBO ###", bold: true, fontSize: 0);
+                printer.PrintCenter(estacionamientoNombre, bold: true, fontSize: 0);
+                
                 if (!string.IsNullOrWhiteSpace(direccion))
-                    DrawCenter(direccion, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                    printer.PrintCenter(direccion, bold: false, fontSize: 0);
                 if (!string.IsNullOrWhiteSpace(ciudad))
-                    DrawCenter(ciudad, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                    printer.PrintCenter(ciudad, bold: false, fontSize: 0);
 
-                DrawCenter(movimiento.Fecha.ToString("dd/MM/yy • HH:mm"), new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
-                DrawCenter($"Cajero: {cajero}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
-                DrawCenter($"Forma de Pago: {formaPago}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular), 8);
+                printer.PrintEmptyLine(1);
+                printer.PrintCenter(movimiento.Fecha.ToString("dd/MM/yy • HH:mm"), bold: false, fontSize: 0);
+                printer.PrintCenter($"Cajero: {cajero}", bold: false, fontSize: 0);
+                printer.PrintCenter($"Forma de Pago: {formaPago}", bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
 
-                DrawCenter($"CLIENTE: {clienteNombre}", new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold));
+                // Cliente
+                printer.PrintCenter($"CLIENTE: {clienteNombre}", bold: true, fontSize: 0);
                 if (!string.IsNullOrWhiteSpace(matriculaReferencia))
                 {
-                    DrawCenter($"MATRÍCULA: {FormatearMatricula(matriculaReferencia)}", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular));
+                    printer.PrintCenter($"MATRÍCULA: {FormatearMatricula(matriculaReferencia)}", bold: false, fontSize: 0);
                 }
+                printer.PrintEmptyLine(1);
 
-                DrawCenter("DESCRIPCIÓN", new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold));
-                DrawCenter(string.IsNullOrWhiteSpace(movimiento.Descripcion) ? $"MOVIMIENTO #{movimiento.Id}" : movimiento.Descripcion, new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular), 8);
+                // Descripción
+                printer.PrintCenter("DESCRIPCIÓN", bold: true, fontSize: 0);
+                printer.PrintCenter(string.IsNullOrWhiteSpace(movimiento.Descripcion) ? $"MOVIMIENTO #{movimiento.Id}" : movimiento.Descripcion, bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
 
-                y += 6;
-                DrawCenter($"TOTAL: {movimiento.Importe.ToString("$#,0.00")}", new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold));
+                // Total
+                printer.PrintCenter($"TOTAL: {movimiento.Importe.ToString("$#,0.00")}", bold: true, fontSize: 1);
+                printer.PrintEmptyLine(1);
 
-                y += 6;
-                DrawCenter("* NO VALIDO COMO FACTURA *", new System.Drawing.Font("Arial", 8, System.Drawing.FontStyle.Regular));
-            };
+                // Footer
+                printer.PrintCenter("* NO VALIDO COMO FACTURA *", bold: false, fontSize: 0);
+                printer.PrintEmptyLine(2);
 
-            pd.Print();
+                // Corte de papel
+                printer.CutPaper(fullCut: true);
+
+                // Enviar a impresora
+                printer.Print();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error al imprimir recibo mensual: {ex.Message}");
+            }
         }
 
         private void ImprimirTicket(int ticketId, Ticket ticket, Tarifa? tarifa, Categoria? categoria)
@@ -1138,121 +1151,55 @@ namespace Cocheras.Windows
             string categoriaNombre = categoria?.Nombre?.ToUpperInvariant() ?? "CATEGORIA";
             DateTime fechaEntrada = ticket.FechaEntrada;
 
-            // Preparar documento de impresión
-            var pd = new PrintDocument();
-            pd.PrinterSettings.PrinterName = printerName;
-            pd.DefaultPageSettings.PaperSize = new PaperSize("Ticket", 300, 600); // ~58mm ancho
-            pd.DefaultPageSettings.Margins = new Margins(5, 5, 5, 5);
-            pd.PrintPage += (s, ev) =>
-            {
-                Graphics g = ev.Graphics;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                int y = 10;
-                int centerX = ev.PageBounds.Width / 2;
-
-                // Logo circular con E
-                using (var pen = new System.Drawing.Pen(System.Drawing.Color.Black, 2))
-                using (var brushWhite = new System.Drawing.SolidBrush(System.Drawing.Color.White))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                using (var fontE = new System.Drawing.Font("Arial", 18, System.Drawing.FontStyle.Bold))
-                {
-                    int r = 28;
-                    g.FillEllipse(brushWhite, centerX - r, y, r * 2, r * 2);
-                    g.DrawEllipse(pen, centerX - r, y, r * 2, r * 2);
-                    var sizeE = g.MeasureString("E", fontE);
-                    g.DrawString("E", fontE, brushBlack, centerX - sizeE.Width / 2, y + r - sizeE.Height / 2);
-                }
-                y += 2 * 28 + 6;
-
-                // parking
-                using (var fontParking = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold))
-                using (var fontSlogan = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                using (var brushGray = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(90, 90, 90)))
-                {
-                    var sz = g.MeasureString("parking", fontParking);
-                    g.DrawString("parking", fontParking, brushBlack, centerX - sz.Width / 2, y);
-                    y += (int)sz.Height + 2;
-
-                    if (!string.IsNullOrWhiteSpace(_estacionamientoCache.Slogan))
-                    {
-                        sz = g.MeasureString(_estacionamientoCache.Slogan, fontSlogan);
-                        g.DrawString(_estacionamientoCache.Slogan, fontSlogan, brushGray, centerX - sz.Width / 2, y);
-                        y += (int)sz.Height + 6;
-                    }
-                    else
-                    {
-                        y += 6;
-                    }
-                }
-
-                // Nombre empresa
-                using (var fontEmp = new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                {
-                    var sz = g.MeasureString(nombreEmpresa, fontEmp);
-                    g.DrawString(nombreEmpresa, fontEmp, brushBlack, centerX - sz.Width / 2, y);
-                    y += (int)sz.Height + 6;
-                }
-
-                // Tarifa (ej: X HORA)
-                using (var fontTarifa = new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                {
-                    var sz = g.MeasureString(tarifaNombre, fontTarifa);
-                    g.DrawString(tarifaNombre, fontTarifa, brushBlack, centerX - sz.Width / 2, y);
-                    y += (int)sz.Height + 8;
-                }
-
-                // Código de barras con ID
-                var barcodeImg = GenerarCode128(ticketId.ToString(), 220, 60);
-                if (barcodeImg != null)
-                {
-                    g.DrawImage(barcodeImg, centerX - barcodeImg.Width / 2, y);
-                    y += barcodeImg.Height + 8;
-                    barcodeImg.Dispose();
-                }
-
-                // Placa
-                using (var fontPlaca = new System.Drawing.Font("Arial", 18, System.Drawing.FontStyle.Bold))
-                using (var brushWhite = new System.Drawing.SolidBrush(System.Drawing.Color.White))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                {
-                    var sz = g.MeasureString(placa, fontPlaca);
-                    int bw = (int)sz.Width + 20;
-                    int bh = (int)sz.Height + 6;
-                    g.FillRectangle(brushBlack, centerX - bw / 2, y, bw, bh);
-                    g.DrawString(placa, fontPlaca, brushWhite, centerX - sz.Width / 2, y + (bh - sz.Height) / 2);
-                    y += bh + 12;
-                }
-
-                // Fecha/hora entrada
-                using (var fontFecha = new System.Drawing.Font("Arial", 11, System.Drawing.FontStyle.Bold))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                {
-                    var fechaStr = fechaEntrada.ToString("dd/MM/yy • HH:mm");
-                    var sz = g.MeasureString(fechaStr, fontFecha);
-                    g.DrawString(fechaStr, fontFecha, brushBlack, centerX - sz.Width / 2, y);
-                    y += (int)sz.Height + 12;
-                }
-
-                // Footer
-                using (var fontFooter = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Italic))
-                using (var brushBlack = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
-                {
-                    var footer = "Ticket emitido por Parking Co.";
-                    var sz = g.MeasureString(footer, fontFooter);
-                    g.DrawString(footer, fontFooter, brushBlack, centerX - sz.Width / 2, y);
-                }
-            };
-
             try
             {
-                pd.Print();
+                var printer = new EscPosPrinter(printerName);
+
+                // Espacio inicial
+                printer.PrintEmptyLine(1);
+
+                // Logo/Header - Círculo con E (simulado con texto grande)
+                printer.PrintCenter("E", bold: true, fontSize: 3);
+                printer.PrintEmptyLine(1);
+
+                // parking (negrita, tamaño doble ancho)
+                printer.PrintCenter("parking", bold: true, fontSize: 1);
+                printer.PrintEmptyLine(1);
+
+                // Nombre del estacionamiento
+                printer.PrintCenter(nombreEmpresa, bold: false, fontSize: 0);
+                
+                // Tarifa (en la misma línea o siguiente)
+                printer.PrintCenter(tarifaNombre, bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
+
+                // Código de barras con ID (centrado)
+                printer.PrintBarcode(ticketId.ToString(), height: 80, width: 2, position: 2);
+                printer.PrintEmptyLine(1);
+
+                // Placa destacada (texto grande y negrita)
+                printer.PrintCenter(placa, bold: true, fontSize: 2);
+                printer.PrintEmptyLine(1);
+
+                // Fecha/hora entrada
+                string fechaStr = fechaEntrada.ToString("dd/MM/yy • HH:mm");
+                printer.PrintCenter(fechaStr, bold: false, fontSize: 0);
+                printer.PrintEmptyLine(1);
+
+                // Footer
+                printer.PrintCenter("Ticket emitido por Parking Co.", bold: false, fontSize: 0);
+                printer.PrintEmptyLine(2);
+
+                // Corte de papel
+                printer.CutPaper(fullCut: true);
+
+                // Enviar a impresora
+                printer.Print();
             }
-            catch
+            catch (Exception ex)
             {
-                // Silenciar errores de impresión
+                // Log error si es necesario
+                System.Diagnostics.Debug.WriteLine($"Error al imprimir ticket: {ex.Message}");
             }
         }
 
@@ -5749,6 +5696,9 @@ namespace Cocheras.Windows
                 };
 
                 _dbService.GuardarEstacionamiento(estacionamiento);
+
+                // Actualizar el cache del estacionamiento para que los cambios se reflejen inmediatamente
+                _estacionamientoCache = _dbService.ObtenerEstacionamiento();
 
                 // Forzar tema claro
                 if (_modoOscuro)
