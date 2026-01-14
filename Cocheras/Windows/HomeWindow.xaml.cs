@@ -1044,11 +1044,17 @@ namespace Cocheras.Windows
                 printer.CutPaper(fullCut: true);
 
                 // Enviar a impresora
-                printer.Print();
+                bool impreso = printer.Print();
+                if (!impreso)
+                {
+                    MessageBox.Show($"Error al imprimir el recibo. Verifique que la impresora '{printerName}' esté conectada y configurada correctamente.", 
+                        "Error de Impresión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error al imprimir recibo de cobro: {ex.Message}");
+                MessageBox.Show($"Error al imprimir recibo de cobro: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Diagnostics.Debug.WriteLine($"Error al imprimir recibo de cobro: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
@@ -1118,11 +1124,17 @@ namespace Cocheras.Windows
                 printer.CutPaper(fullCut: true);
 
                 // Enviar a impresora
-                printer.Print();
+                bool impreso = printer.Print();
+                if (!impreso)
+                {
+                    MessageBox.Show($"Error al imprimir el recibo mensual. Verifique que la impresora '{printerName}' esté conectada y configurada correctamente.", 
+                        "Error de Impresión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error al imprimir recibo mensual: {ex.Message}");
+                MessageBox.Show($"Error al imprimir recibo mensual: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Diagnostics.Debug.WriteLine($"Error al imprimir recibo mensual: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
@@ -1194,12 +1206,17 @@ namespace Cocheras.Windows
                 printer.CutPaper(fullCut: true);
 
                 // Enviar a impresora
-                printer.Print();
+                bool impreso = printer.Print();
+                if (!impreso)
+                {
+                    MessageBox.Show($"Error al imprimir el ticket. Verifique que la impresora '{printerName}' esté conectada y configurada correctamente.", 
+                        "Error de Impresión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             catch (Exception ex)
             {
-                // Log error si es necesario
-                System.Diagnostics.Debug.WriteLine($"Error al imprimir ticket: {ex.Message}");
+                MessageBox.Show($"Error al imprimir ticket: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Diagnostics.Debug.WriteLine($"Error al imprimir ticket: {ex.Message}\n{ex.StackTrace}");
             }
         }
 

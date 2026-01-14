@@ -199,14 +199,25 @@ namespace Cocheras.Helpers
         /// </summary>
         public bool Print()
         {
-            if (_buffer.Count == 0) return false;
+            if (_buffer.Count == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("EscPosPrinter: Buffer vacío, no hay nada que imprimir");
+                return false;
+            }
             
             try
             {
-                return SendBytesToPrinter(_printerName, _buffer.ToArray());
+                System.Diagnostics.Debug.WriteLine($"EscPosPrinter: Intentando imprimir en '{_printerName}', {_buffer.Count} bytes");
+                bool result = SendBytesToPrinter(_printerName, _buffer.ToArray());
+                if (!result)
+                {
+                    System.Diagnostics.Debug.WriteLine($"EscPosPrinter: Error al enviar datos a la impresora '{_printerName}'");
+                }
+                return result;
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"EscPosPrinter: Excepción al imprimir: {ex.Message}");
                 return false;
             }
         }
@@ -251,36 +262,57 @@ namespace Cocheras.Helpers
 
             try
             {
+                System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Abriendo impresora '{printerName}'");
                 if (!OpenPrinter(printerName, out hPrinter, IntPtr.Zero))
                 {
+                    int error = Marshal.GetLastWin32Error();
+                    System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Error al abrir impresora. Código de error: {error}");
                     return false;
                 }
 
                 DOCINFOA di = new DOCINFOA();
 
+                System.Diagnostics.Debug.WriteLine("SendBytesToPrinter: Iniciando documento");
                 if (!StartDocPrinter(hPrinter, 1, di))
                 {
+                    int error = Marshal.GetLastWin32Error();
+                    System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Error al iniciar documento. Código: {error}");
                     ClosePrinter(hPrinter);
                     return false;
                 }
 
+                System.Diagnostics.Debug.WriteLine("SendBytesToPrinter: Iniciando página");
                 if (!StartPagePrinter(hPrinter))
                 {
+                    int error = Marshal.GetLastWin32Error();
+                    System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Error al iniciar página. Código: {error}");
                     EndDocPrinter(hPrinter);
                     ClosePrinter(hPrinter);
                     return false;
                 }
 
+                System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Escribiendo {data.Length} bytes");
                 IntPtr pBytes = Marshal.AllocHGlobal(data.Length);
                 Marshal.Copy(data, 0, pBytes, data.Length);
                 success = WritePrinter(hPrinter, pBytes, data.Length, out int written);
                 Marshal.FreeHGlobal(pBytes);
 
+                if (!success)
+                {
+                    int error = Marshal.GetLastWin32Error();
+                    System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Error al escribir. Código: {error}, bytes escritos: {written}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Escritos {written} bytes exitosamente");
+                }
+
                 EndPagePrinter(hPrinter);
                 EndDocPrinter(hPrinter);
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"SendBytesToPrinter: Excepción: {ex.Message}");
                 success = false;
             }
             finally
