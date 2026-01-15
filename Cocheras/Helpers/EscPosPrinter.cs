@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Drawing.Text;
 
 namespace Cocheras.Helpers
 {
@@ -13,6 +17,7 @@ namespace Cocheras.Helpers
     {
         private readonly List<byte> _buffer;
         private readonly string _printerName;
+        private static readonly Encoding TextEncoding = Encoding.Latin1;
 
         public EscPosPrinter(string printerName)
         {
@@ -22,16 +27,17 @@ namespace Cocheras.Helpers
         }
 
         /// <summary>
-        /// Inicializa la impresora (reset, encoding UTF-8)
+        /// Inicializa la impresora (reset, codepage)
         /// </summary>
         private void Initialize()
         {
             // ESC @ - Inicializar impresora
             AddCommand(new byte[] { 0x1B, 0x40 });
             
-            // Configurar codificación (UTF-8)
-            // ESC t - Seleccionar tabla de caracteres
-            AddCommand(new byte[] { 0x1B, 0x74, 0x10 }); // UTF-8
+            // IMPORTANTE:
+            // Muchas impresoras ESC/POS (incluida Hasar) NO soportan UTF-8 como stream.
+            // Usamos codepage single-byte. 0x10 suele corresponder a WPC1252 (depende del modelo).
+            AddCommand(new byte[] { 0x1B, 0x74, 0x10 });
         }
 
         /// <summary>
@@ -48,7 +54,7 @@ namespace Cocheras.Helpers
         private void AddText(string text)
         {
             if (string.IsNullOrEmpty(text)) return;
-            _buffer.AddRange(Encoding.UTF8.GetBytes(text));
+            _buffer.AddRange(TextEncoding.GetBytes(text));
         }
 
         /// <summary>
@@ -126,9 +132,11 @@ namespace Cocheras.Helpers
         /// <summary>
         /// Imprime código de barras Code128
         /// </summary>
-        public EscPosPrinter PrintBarcode(string data, int height = 80, byte width = 2, byte position = 2)
+        public EscPosPrinter PrintBarcode(string data, int height = 90, byte width = 6, byte position = 0)
         {
             if (string.IsNullOrEmpty(data)) return this;
+
+            SetAlignment(1); // Centro
 
             // GS H - Posición del código de texto (0=ninguno, 1=arriba, 2=abajo)
             AddCommand(new byte[] { 0x1D, 0x48, position });
@@ -141,7 +149,9 @@ namespace Cocheras.Helpers
             
             // GS k - Imprimir código de barras Code128
             // 73 = Code128 (formato: GS k m n d1...dk)
-            byte[] dataBytes = Encoding.ASCII.GetBytes(data); // Code128 usa ASCII
+            // Forzamos Code Set B para IDs alfanuméricos/numéricos comunes.
+            string payload = "{B" + data;
+            byte[] dataBytes = Encoding.ASCII.GetBytes(payload); // Code128 usa ASCII
             if (dataBytes.Length > 255) return this; // Limitar tamaño
             
             List<byte> barcodeCmd = new List<byte> { 0x1D, 0x6B, 0x49, (byte)dataBytes.Length };
@@ -149,6 +159,7 @@ namespace Cocheras.Helpers
             AddCommand(barcodeCmd.ToArray());
             
             AddText("\n");
+            SetAlignment(0);
             return this;
         }
 
@@ -234,7 +245,197 @@ namespace Cocheras.Helpers
         }
 
         /// <summary>
+        /// Imprime un logo circular con la letra "E" (raster image) centrado.
+        /// Esto evita problemas de codepage/UTF-8 y soporte de reverse-video.
+        /// </summary>
+        public EscPosPrinter PrintLogoCircleE(int sizeDots = 160)
+        {
+            if (sizeDots < 64) sizeDots = 64;
+            using var bmp = new Bitmap(sizeDots, sizeDots, PixelFormat.Format32bppArgb);
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.White);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+
+                float pad = Math.Max(2f, sizeDots * 0.03f);
+                float ring = Math.Max(8f, sizeDots * 0.08f);
+                float ringGap = Math.Max(4f, sizeDots * 0.03f);
+
+                var outer = new RectangleF(pad, pad, sizeDots - pad * 2, sizeDots - pad * 2);
+                using var black = new SolidBrush(Color.Black);
+                g.FillEllipse(black, outer);
+
+                // Anillo blanco
+                var whiteRing = new RectangleF(pad + ring, pad + ring, sizeDots - 2 * (pad + ring), sizeDots - 2 * (pad + ring));
+                g.FillEllipse(Brushes.White, whiteRing);
+
+                // Centro negro (deja el anillo blanco visible)
+                var innerBlack = new RectangleF(
+                    pad + ring + ringGap,
+                    pad + ring + ringGap,
+                    sizeDots - 2 * (pad + ring + ringGap),
+                    sizeDots - 2 * (pad + ring + ringGap)
+                );
+                g.FillEllipse(black, innerBlack);
+
+                // Letra E blanca centrada
+                using var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+                float fontPx = sizeDots * 0.62f;
+                using var font = new Font("Segoe UI Black", fontPx, FontStyle.Bold, GraphicsUnit.Pixel);
+                g.DrawString("E", font, Brushes.White, new RectangleF(0, 0, sizeDots, sizeDots), sf);
+            }
+
+            return PrintRasterImage(bmp, center: true, maxWidthDots: 576);
+        }
+
+        /// <summary>
+        /// Imprime la matrícula como rectángulo negro con texto blanco (raster image) centrado.
+        /// </summary>
+        public EscPosPrinter PrintPlate(string plate, int widthDots = 520, int heightDots = 90)
+        {
+            plate ??= string.Empty;
+            if (widthDots < 200) widthDots = 200;
+            if (heightDots < 48) heightDots = 48;
+
+            using var bmp = new Bitmap(widthDots, heightDots, PixelFormat.Format32bppArgb);
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.Black);
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
+
+                using var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+
+                // Ajustar tamaño de fuente para que entre con margen
+                float fontPx = heightDots * 0.70f;
+                Font? font = null;
+                try
+                {
+                    while (fontPx > 10)
+                    {
+                        font?.Dispose();
+                        font = new Font("Segoe UI Black", fontPx, FontStyle.Bold, GraphicsUnit.Pixel);
+                        var measured = g.MeasureString(plate, font);
+                        if (measured.Width <= widthDots * 0.92f && measured.Height <= heightDots * 0.92f)
+                            break;
+                        fontPx -= 2f;
+                    }
+
+                    font ??= new Font("Segoe UI Black", 10f, FontStyle.Bold, GraphicsUnit.Pixel);
+                    g.DrawString(plate, font, Brushes.White, new RectangleF(0, 0, widthDots, heightDots), sf);
+                }
+                finally
+                {
+                    font?.Dispose();
+                }
+            }
+
+            return PrintRasterImage(bmp, center: true, maxWidthDots: 576);
+        }
+
+        /// <summary>
+        /// Imprime una imagen como raster (GS v 0). Recomendado para logos y bloques negros.
+        /// </summary>
+        public EscPosPrinter PrintRasterImage(Bitmap bitmap, bool center = true, int maxWidthDots = 576)
+        {
+            if (bitmap == null) throw new ArgumentNullException(nameof(bitmap));
+
+            using var scaled = ScaleToMaxWidth(bitmap, maxWidthDots);
+            byte[] raster = BuildRasterBytes(scaled, out int widthBytes, out int heightDots);
+
+            if (center) SetAlignment(1);
+
+            // GS v 0 m xL xH yL yH d...
+            // m=0 normal
+            var header = new byte[]
+            {
+                0x1D, 0x76, 0x30, 0x00,
+                (byte)(widthBytes & 0xFF), (byte)((widthBytes >> 8) & 0xFF),
+                (byte)(heightDots & 0xFF), (byte)((heightDots >> 8) & 0xFF)
+            };
+            AddCommand(header);
+            AddCommand(raster);
+            AddText("\n");
+
+            if (center) SetAlignment(0);
+            return this;
+        }
+
+        private static Bitmap ScaleToMaxWidth(Bitmap src, int maxWidthDots)
+        {
+            if (maxWidthDots <= 0) return (Bitmap)src.Clone();
+            if (src.Width <= maxWidthDots) return (Bitmap)src.Clone();
+
+            int newW = maxWidthDots;
+            int newH = (int)Math.Round(src.Height * (newW / (double)src.Width));
+            if (newH < 1) newH = 1;
+
+            var dst = new Bitmap(newW, newH, PixelFormat.Format32bppArgb);
+            using var g = Graphics.FromImage(dst);
+            g.Clear(Color.White);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.DrawImage(src, new Rectangle(0, 0, newW, newH));
+            return dst;
+        }
+
+        private static byte[] BuildRasterBytes(Bitmap bmp, out int widthBytes, out int heightDots)
+        {
+            int width = bmp.Width;
+            int height = bmp.Height;
+            heightDots = height;
+            widthBytes = (width + 7) / 8;
+            var output = new byte[widthBytes * height];
+
+            var rect = new Rectangle(0, 0, width, height);
+            using var clone = bmp.PixelFormat == PixelFormat.Format32bppArgb
+                ? (Bitmap)bmp.Clone()
+                : bmp.Clone(rect, PixelFormat.Format32bppArgb);
+
+            var data = clone.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            try
+            {
+                int stride = Math.Abs(data.Stride);
+                var raw = new byte[stride * height];
+                Marshal.Copy(data.Scan0, raw, 0, raw.Length);
+
+                for (int y = 0; y < height; y++)
+                {
+                    int rowBase = y * stride;
+                    int outBase = y * widthBytes;
+                    for (int x = 0; x < width; x++)
+                    {
+                        int px = rowBase + (x * 4);
+                        byte b = raw[px + 0];
+                        byte g = raw[px + 1];
+                        byte r = raw[px + 2];
+
+                        // Luma (0..255)
+                        int luma = (r * 299 + g * 587 + b * 114) / 1000;
+                        bool isBlack = luma < 128;
+                        if (!isBlack) continue;
+
+                        int idx = outBase + (x / 8);
+                        output[idx] |= (byte)(0x80 >> (x % 8));
+                    }
+                }
+            }
+            finally
+            {
+                clone.UnlockBits(data);
+            }
+
+            return output;
+        }
+
+        /// <summary>
         /// Imprime un círculo simulado con texto (para el logo E)
+        /// Usa caracteres de bloque con reverse video para crear un círculo centrado
         /// </summary>
         public EscPosPrinter PrintCircleWithText(string text, bool bold = true, byte fontSize = 3)
         {
@@ -245,23 +446,32 @@ namespace Cocheras.Helpers
             // Activar reverse video para el círculo (fondo negro, texto blanco)
             SetInverseColors(true);
             
-            // Crear un círculo más redondeado con caracteres
-            // Línea superior del círculo
-            AddText("   ██████   ");
+            // Crear un círculo más redondeado y centrado usando caracteres de bloque
+            // El ancho total debe ser aproximadamente 48 caracteres (para impresoras de 80mm)
+            // Línea superior del círculo (curva superior)
+            AddText("      ████      ");
+            AddText("\n");
+            
+            // Línea media superior
+            AddText("    ████████    ");
             AddText("\n");
             
             // Líneas laterales con texto en el centro
-            AddText("  ██");
+            AddText("   ██");
             SetBold(bold);
             if (fontSize > 0) SetFontSize(fontSize);
-            AddText("  " + text + "  ");
+            AddText("   " + text + "   ");
             SetBold(false);
             if (fontSize > 0) SetFontSize(0);
-            AddText("██  ");
+            AddText("██   ");
             AddText("\n");
             
-            // Línea inferior del círculo
-            AddText("   ██████   ");
+            // Línea media inferior
+            AddText("    ████████    ");
+            AddText("\n");
+            
+            // Línea inferior del círculo (curva inferior)
+            AddText("      ████      ");
             AddText("\n");
             
             // Desactivar reverse video

@@ -1159,6 +1159,7 @@ namespace Cocheras.Windows
 
             // Datos
             string nombreEmpresa = _estacionamientoCache.Nombre;
+            string direccionEmpresa = _estacionamientoCache.Direccion ?? string.Empty;
             string tarifaNombre = tarifa?.Nombre?.ToUpperInvariant() ?? "TARIFA";
             string categoriaNombre = categoria?.Nombre?.ToUpperInvariant() ?? "CATEGORIA";
             DateTime fechaEntrada = ticket.FechaEntrada;
@@ -1171,35 +1172,39 @@ namespace Cocheras.Windows
                 printer.PrintEmptyLine(1);
 
                 // Logo/Header - Círculo negro con E en blanco
-                printer.PrintCircleWithText("E", bold: true, fontSize: 3);
+                printer.PrintLogoCircleE();
                 printer.PrintEmptyLine(1);
 
                 // parking (negrita, tamaño doble ancho)
-                printer.PrintCenter("parking", bold: true, fontSize: 1);
+                printer.PrintCenter(nombreEmpresa, bold: true, fontSize: 1);
                 printer.PrintEmptyLine(1);
 
                 // Nombre del estacionamiento
-                printer.PrintCenter(nombreEmpresa, bold: false, fontSize: 0);
+                printer.PrintCenter(direccionEmpresa, bold: false, fontSize: 0);
                 
                 // Tarifa (XHORA)
                 printer.PrintCenter(tarifaNombre, bold: false, fontSize: 0);
                 printer.PrintEmptyLine(1);
 
-                // Código de barras con ID (centrado)
-                printer.PrintBarcode(ticketId.ToString(), height: 80, width: 2, position: 2);
+                // Código de barras con ID (full width, sin texto)
+                printer.PrintBarcode(ticketId.ToString(), height: 90, width: 6, position: 0);
                 printer.PrintEmptyLine(1);
 
-                // Placa en rectángulo negro con texto blanco (usando reverse video)
-                printer.PrintInverse(placa, bold: true, fontSize: 2);
+                // Placa en rectángulo negro con texto blanco (como imagen raster)
+                printer.PrintPlate(placa);
                 printer.PrintEmptyLine(1);
 
+                // Palabra "ENTRADA"
+                printer.PrintCenter("ENTRADA", bold: false, fontSize: 0);
+                
                 // Fecha/hora entrada
-                string fechaStr = fechaEntrada.ToString("dd/MM/yy • HH:mm");
+                // Evitar caracteres UTF-8 (•) que en muchas impresoras salen como "â€¢"
+                string fechaStr = fechaEntrada.ToString("dd/MM/yy - HH:mm");
                 printer.PrintCenter(fechaStr, bold: false, fontSize: 0);
                 printer.PrintEmptyLine(1);
 
                 // Footer
-                printer.PrintCenter("Ticket emitido por Parking Co.", bold: false, fontSize: 0);
+                printer.PrintCenter("Ticket emitido con Parking Co.", bold: false, fontSize: 0);
                 printer.PrintEmptyLine(2);
 
                 // Corte de papel
