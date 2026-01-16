@@ -2740,6 +2740,7 @@
                               CanUserAddRows="False"
                               CanUserDeleteRows="False"
                               IsReadOnly="True"
+                              MouseDoubleClick="DataGridCerrados_MouseDoubleClick"
                               RowBackground="White"
                               AlternatingRowBackground="#F9FAFB"
                               BorderBrush="#E5E7EB"
@@ -2759,6 +2760,8 @@
                             <DataGridTextColumn Header="Cancelado en" Binding="{Binding FechaCancelacion, StringFormat={}{0:HH:mm (dd/MM)}}" Width="110"/>
                             <DataGridTextColumn Header="Tiempo Total" Binding="{Binding TiempoTotalDisplay}" Width="90"/>
                             <DataGridTextColumn Header="Observación" Binding="{Binding ObservacionDisplay}" Width="140"/>
+                            <DataGridTextColumn Header="Notas" Binding="{Binding NotaAdicional}" Width="160"/>
+                            <DataGridTextColumn Header="Motivo" Binding="{Binding MotivoCancelacion}" Width="160"/>
                             <DataGridTextColumn Header="Importe" Binding="{Binding MontoDisplay}" Width="80"/>
                             <DataGridTextColumn Header="Pagado" Binding="{Binding MontoDisplay}" Width="80"/>
                             <DataGridTextColumn Header="Abierto por" Binding="{Binding AdminCreadorNombre}" Width="100"/>

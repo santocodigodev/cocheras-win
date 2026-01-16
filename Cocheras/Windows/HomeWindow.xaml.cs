@@ -64,6 +64,7 @@ namespace Cocheras.Windows
         private readonly DatabaseService _dbService;
         private readonly string _username;
         private int? _currentAdminId;
+        private bool _esAdmin;
         private DispatcherTimer? _timer;
         private DispatcherTimer? _timerEstadisticas;
         private DispatcherTimer? _timerTiempoTickets;
@@ -324,6 +325,15 @@ namespace Cocheras.Windows
 
             var adminActual = _dbService.ObtenerAdminPorUsername(_username);
             _currentAdminId = adminActual?.Id;
+            _esAdmin = string.Equals(adminActual?.Rol, "admin", StringComparison.OrdinalIgnoreCase);
+
+            // Si no es admin, ocultar Configuración completamente
+            if (!_esAdmin)
+            {
+                if (BtnConfiguracion != null) BtnConfiguracion.Visibility = Visibility.Collapsed;
+                if (PanelSubmenuConfiguracion != null) PanelSubmenuConfiguracion.Visibility = Visibility.Collapsed;
+                if (PanelConfiguracion != null) PanelConfiguracion.Visibility = Visibility.Collapsed;
+            }
 
             // Cachear estacionamiento para usar impresora y nombre en ticket
             _estacionamientoCache = _dbService.ObtenerEstacionamiento();
@@ -2016,7 +2026,11 @@ namespace Cocheras.Windows
                     ticket.TiempoTotalDisplay = "--";
                 }
                 ticket.MontoDisplay = (ticket.Monto ?? CalcularImporteActual(ticket)).ToString("$#,0.00");
-                ticket.ObservacionDisplay = ticket.EstaCancelado ? ticket.MotivoCancelacion : ticket.NotaAdicional;
+                // Observaciones y Notas NO son lo mismo:
+                // - Observación: Descripción del ticket (lo que se escribió al crear/cerrar).
+                // - Notas: NotaAdicional (se muestra en columna aparte).
+                // - MotivoCancelación: se muestra en columna aparte (si aplica).
+                ticket.ObservacionDisplay = ticket.Descripcion ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(ticket.TarifaNombre) && _tarifas.Count > 0)
                 {
                     var t = _tarifas.FirstOrDefault(x => x.Id == ticket.TarifaId);
@@ -2028,6 +2042,46 @@ namespace Cocheras.Windows
                     if (c != null) ticket.CategoriaNombre = c.Nombre;
                 }
                 _ticketsCerrados.Add(ticket);
+            }
+        }
+
+        private void DataGridCerrados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Asegurar que el doble click fue sobre una fila (no header/scrollbar)
+            var dep = e.OriginalSource as DependencyObject;
+            while (dep != null && dep is not DataGridRow)
+            {
+                dep = VisualTreeHelper.GetParent(dep);
+            }
+
+            if (dep is not DataGridRow row) return;
+            if (row.Item is not Ticket ticket) return;
+
+            // Solo si no tiene salida marcada y no está cancelado
+            if (ticket.EstaCancelado) return;
+            if (ticket.FechaSalida.HasValue) return;
+
+            var ahora = DateTime.Now;
+            var msg = $"¿Marcar salida ahora?\n\nSalida: {ahora:dd/MM/yy HH:mm}\nTicket: #{ticket.Id}\nMatrícula: {ticket.Matricula}";
+            var res = MessageBox.Show(msg, "Marcar salida ahora", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (res != MessageBoxResult.OK) return;
+
+            try
+            {
+                _dbService.MarcarSalidaTicket(ticket.Id, ahora, _currentAdminId);
+
+                // Actualizar objeto en memoria y refrescar grilla
+                ticket.FechaSalida = ahora;
+
+                var diff = ticket.FechaSalida.Value - ticket.FechaEntrada;
+                if (diff.TotalMinutes < 0) diff = TimeSpan.Zero;
+                ticket.TiempoTotalDisplay = $"{(int)diff.TotalHours:00}h{diff.Minutes:00}mins";
+
+                AplicarFiltrosCerrados();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se pudo marcar la salida: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -2200,6 +2254,7 @@ namespace Cocheras.Windows
 
         private void BtnConfiguracion_Click(object sender, RoutedEventArgs e)
         {
+            if (!_esAdmin) return;
             PanelSubmenu.Visibility = Visibility.Collapsed;
             if (PanelSubmenuConfiguracion != null)
                 PanelSubmenuConfiguracion.Visibility = Visibility.Visible;
@@ -2207,9 +2262,13 @@ namespace Cocheras.Windows
                 BarraFiltrosAbiertos.Visibility = Visibility.Collapsed;
             if (PanelTicketsAbiertos != null)
                 PanelTicketsAbiertos.Visibility = Visibility.Collapsed;
+            // IMPORTANTE: si venís desde "Tickets Cerrados", este panel quedaba visible y tapaba Configuración.
+            if (PanelTicketsCerrados != null)
+                PanelTicketsCerrados.Visibility = Visibility.Collapsed;
             if (PanelEntradasSalidas != null)
                 PanelEntradasSalidas.Visibility = Visibility.Collapsed;
             if (PanelMensuales != null) PanelMensuales.Visibility = Visibility.Collapsed;
+            if (PanelContadoresInicio != null) PanelContadoresInicio.Visibility = Visibility.Collapsed;
             if (PanelConfiguracion != null)
                 PanelConfiguracion.Visibility = Visibility.Visible;
             ResetearBotonesMenu();

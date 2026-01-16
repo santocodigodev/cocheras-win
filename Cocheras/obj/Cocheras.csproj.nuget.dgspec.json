@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj": {}
+    "c:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj": {}
   },
   "projects": {
-    "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj": {
+    "c:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj",
+        "projectUniqueName": "c:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj",
         "projectName": "Cocheras",
-        "projectPath": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj",
+        "projectPath": "c:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\Cocheras.csproj",
         "packagesPath": "C:\\Users\\juncodde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\obj\\",
+        "outputPath": "c:\\Users\\juncodde\\Desktop\\Code\\Cocheras\\Cocheras\\Cocheras\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juncodde\\AppData\\Roaming\\NuGet\\NuGet.Config",

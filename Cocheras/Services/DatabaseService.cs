@@ -779,12 +779,24 @@ namespace Cocheras.Services
             connection.Open();
 
             string passwordHash = HashPassword(admin.PasswordHash);
-            
-            // Si no se especifica rol, el primero es admin, los demás operador
-            string rol = admin.Rol;
-            if (string.IsNullOrEmpty(rol))
+
+            // Regla: el PRIMER administrador del sistema debe ser "admin"
+            // (la ventana de primer admin no pide rol y el modelo trae "operador" por defecto).
+            string rol = admin.Rol?.Trim() ?? string.Empty;
+
+            string totalQuery = "SELECT COUNT(*) FROM Administradores";
+            using (var totalCmd = new SQLiteCommand(totalQuery, connection))
             {
-                // Verificar si ya existe un admin
+                long total = (long)totalCmd.ExecuteScalar();
+                if (total == 0)
+                {
+                    rol = "admin";
+                }
+            }
+
+            // Si no se especifica rol (o viene vacío), asignar admin si no hay ninguno; si no, operador.
+            if (string.IsNullOrWhiteSpace(rol))
+            {
                 string checkQuery = "SELECT COUNT(*) FROM Administradores WHERE Rol = 'admin'";
                 using var checkCommand = new SQLiteCommand(checkQuery, connection);
                 long count = (long)checkCommand.ExecuteScalar();
@@ -1365,7 +1377,7 @@ namespace Cocheras.Services
                     FechaSalida = @FechaSalida,
                     Monto = @Monto,
                     AdminCerradorId = @AdminCerradorId,
-                    NotaAdicional = @Descripcion
+                    Descripcion = @Descripcion
                 WHERE Id = @Id";
 
             using var command = new SQLiteCommand(query, connection);
@@ -1373,6 +1385,25 @@ namespace Cocheras.Services
             command.Parameters.AddWithValue("@Monto", monto);
             command.Parameters.AddWithValue("@AdminCerradorId", adminCerradorId.HasValue ? (object)adminCerradorId.Value : DBNull.Value);
             command.Parameters.AddWithValue("@Descripcion", descripcion ?? string.Empty);
+            command.Parameters.AddWithValue("@Id", ticketId);
+            command.ExecuteNonQuery();
+        }
+
+        public void MarcarSalidaTicket(int ticketId, DateTime fechaSalida, int? adminCerradorId)
+        {
+            using var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
+
+            // Solo marca FechaSalida (y setea AdminCerradorId si estaba NULL)
+            string query = @"
+                UPDATE Tickets
+                SET FechaSalida = @FechaSalida,
+                    AdminCerradorId = COALESCE(AdminCerradorId, @AdminCerradorId)
+                WHERE Id = @Id";
+
+            using var command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@FechaSalida", fechaSalida);
+            command.Parameters.AddWithValue("@AdminCerradorId", adminCerradorId.HasValue ? (object)adminCerradorId.Value : DBNull.Value);
             command.Parameters.AddWithValue("@Id", ticketId);
             command.ExecuteNonQuery();
         }
